@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Product</title>
+    <style>
+        
+            body {
+                align-items: center;
+                background-color: #D1E0DB;
+                display: flex;
+                justify-content: center;
+                height: 100vh;
+                font-family: fantasy; 
+                              
+              }
+        .container{
+            display: flex;
+        }
+        .left{
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            border-style: inherit;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #EBF4F1;
+            color: #0C133B;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .form-class {
+            display: block;
+            align-items: center;
+            background-color: #202945;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-style: inherit;
+            flex-direction: row;
+            padding: 20px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-family: "Libre Baskerville";
+            margin: 0 auto;
+            color: #F7F8FA;
+        }
+        .items{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            margin: auto;
+            justify-content: space-around;
+        }
+
+        .form-class button:hover {
+            background-color: #0056b3;
+        }
+        input[type=text] {
+            width: 100%;
+            
+            margin: 8px 0;
+            box-sizing: border-box;
+            outline: none;
+            transition: box-shadow .2s;
+            text-decoration: none;
+            font-family: "Montserrat";
+        }
+        input[type=number] {
+            width: 100%;
+            text-decoration: #202945;
+            margin: 8px 0;
+            box-sizing: border-box;
+            outline: none;
+            transition: box-shadow .2s;
+            text-decoration: none;
+            font-family: "Montserrat";
+        }
+.dropdown {
+  position: relative;
+  display: inline-block;
+  font-style: normal;
+  font-family: "Libre Baskerville";
+  
+}
+
+.form-field {
+    margin-bottom: 20px; /* Add spacing between fields */
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    border-radius: 4px; /* Add rounded corners to the dropdown */
+    margin-top: 5px; /* Add some space between the input and dropdown */
+}
+
+/* Style the dropdown content links */
+.dropdown-content .drop-item {
+    
+    font-family: "Montserrat";
+    display: block;
+    padding: 5px 0;
+}
+
+/* Change the background color of dropdown content links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown content when the dropdown is hovered */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left"><div class="main-label"><h1>Create Product</h1></div></div>
+    <div class="form-class">
+        
+        <form method="post" action="{% url 'generate_product'  %}" enctype="multipart/form-data">
+            
+            {% csrf_token %}
+            <div class="items">
+                <div class="form-field">
+                    <label for="{{ form.product_name.id_for_label }}">Product Name:</label>
+                    {{ form.product_name }}
+                </div>
+                <div class="form-field">
+                    <label for="category">Category:</label>
+                    <div class="dropdown">
+                        <select id="category" name="category" required>
+                            <option value="" selected>Select a category</option>
+                            {% for category in form.category.field.choices %}
+                                <option value="{{ category.0 }}">{{ category.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="school">School:</label>
+                    <div class="dropdown">
+                        <select id="school" name="school" required>
+                            <div class="dropdown-content"></div>
+                            <option style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;background-color:#C0C0C0; color:#202945;">Select a school</option>
+                            
+                            {% for school in form.school.field.choices %}
+                                <div class="drop-item">
+                                    <option value="{{ school.0 }}">{{ school.1 }}</option>
+                                </div>
+                                    
+                                
+                            {% endfor %}
+                            </div></div>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label for="{{ form.copies.id_for_label }}">Copies:</label>
+                    {{ form.copies }}
+                </div>
+            </div>
+            <div class="butns">
+               
+                    <button type="submit"><span for="Create"><i class="btn-icon"><img src="{% static 'images/file-plus.svg' %}" alt="Icon"></i>Create</span></button>
+
+            </div>
+            
+            
+        </form>
+    </div>
+    </div>
+    <script>
+
+
+    </script>
+</body>
+</html>

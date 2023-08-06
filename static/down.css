@@ -1,0 +1,53 @@
+/* ... (previous styles) ... */
+
+/* Custom styles for the select elements */
+select {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+
+/* Custom styles for the dropdown arrow */
+select::-ms-expand {
+    display: none;
+}
+
+select option {
+    background-color: #303245;
+}
+
+/* Custom styles for the placeholder text in the select */
+option[value=""] {
+    color: #808097;
+}
+
+/* Custom styles for the focused state of the select */
+select:focus {
+    color: #dc2f55;
+    outline: none;
+}
+
+/* Custom styles for the dropdown arrow container */
+.select-container {
+    position: relative;
+}
+
+.select-container::after {
+    content: '\25BC'; /* Unicode for the dropdown arrow */
+    font-size: 18px;
+    color: #eee;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* ... (previous styles) ... */

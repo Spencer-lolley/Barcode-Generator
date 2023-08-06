@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+</head>
+<body>
+    <h1>Product List</h1>
+    <ul>
+        <div class="gallery">
+            {% for product in products %}
+            {% if product.barcode and product.barcode.url %}
+                <li>
+                    <div class="gallery_item">
+                       <div class="gallery_image">
+                        {{ product.product_name }} - {{product.created_at}}
+                        <img src="{{ product.barcode.url }}" alt="Barcode" width="200" height="100">
+                       </div>
+                    </div>
+                </li>
+            {% else %}
+                <li>{{ product.product_name }} - Barcode not generated</li>
+            {% endif %}
+        {% endfor %}
+        </div>
+    
+    </ul>
+</body>
+</html>
